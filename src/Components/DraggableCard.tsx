@@ -10,7 +10,6 @@ type DraggableCardProps = {
 // React memo, props 가 변경되지 않으면 렌더링을 다시 하지 마라
 
 function DraggableCard({ toDo, index }: DraggableCardProps) {
-  console.log(toDo, 'has re');
   return (
     <Draggable draggableId={toDo} index={index}>
       {(provided) => (
