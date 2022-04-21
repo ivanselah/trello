@@ -28,7 +28,7 @@ function App() {
     if (!destination) return;
     const boardId = destination.droppableId;
     const targetNewBoards = [...toDos[boardId]];
-    if (destination?.droppableId === source.droppableId) {
+    if (destination.droppableId === source.droppableId) {
       targetNewBoards.splice(source.index, 1);
       targetNewBoards.splice(destination.index, 0, draggableId);
       setToDos((currentBoards) => {
@@ -38,13 +38,14 @@ function App() {
         };
       });
     } else {
-      const currentNewBoard = [...toDos[source.droppableId]];
+      const targetBoardId = source.droppableId;
+      const currentNewBoard = [...toDos[targetBoardId]];
       currentNewBoard.splice(source.index, 1);
       targetNewBoards.splice(destination.index, 0, draggableId);
       setToDos((currentBoards) => {
         return {
           ...currentBoards,
-          [source.droppableId]: currentNewBoard,
+          [targetBoardId]: currentNewBoard,
           [boardId]: targetNewBoards,
         };
       });
