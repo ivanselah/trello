@@ -12,8 +12,8 @@ type DraggableCardProps = {
 function DraggableCard({ toDo, index }: DraggableCardProps) {
   return (
     <Draggable draggableId={toDo} index={index}>
-      {(provided) => (
-        <Card ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+      {(provided, snapshot) => (
+        <Card isDragging={snapshot.isDragging} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           {toDo}
         </Card>
       )}
@@ -23,9 +23,10 @@ function DraggableCard({ toDo, index }: DraggableCardProps) {
 
 export default React.memo(DraggableCard);
 
-const Card = styled.div`
+const Card = styled.div<{ isDragging: boolean }>`
   border-radius: 5px;
   margin-bottom: 5px;
   padding: 10px 10px;
-  background-color: ${(props) => props.theme.cardColor};
+  background-color: ${(props) => (props.isDragging ? '#55efc4' : props.theme.cardColor)};
+  box-shadow: ${(props) => (props.isDragging ? '0px 2px 20px rgba(0, 0, 0, 0.5)' : 'none')};
 `;

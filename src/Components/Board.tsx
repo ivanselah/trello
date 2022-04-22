@@ -33,8 +33,7 @@ function Board({ toDos, boardId }: BoardProps) {
 export default Board;
 
 const Wrapper = styled.div`
-  padding: 20px 10px;
-  padding-top: 30px;
+  padding-top: 10px;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
   min-height: 300px;
@@ -55,7 +54,8 @@ type AreaProps = {
 };
 
 const Area = styled.div<AreaProps>`
-  background-color: ${(props) => (props.isDaggingOver ? 'tomato' : props.draggingFromThisWith ? 'red' : 'pink')};
+  background-color: ${(props) => (props.isDaggingOver ? '#b2bec3' : props.draggingFromThisWith ? '#dfe6e9' : 'transparent')};
   flex-grow: 1;
   transition: background-color 0.3s ease-in-out;
+  padding: 20px;
 `;

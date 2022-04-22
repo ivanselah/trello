@@ -7,7 +7,7 @@ type ToDoStateProps = {
 export const toDoState = atom<ToDoStateProps>({
   key: 'toDo',
   default: {
-    to_do: ['a', 'b', 'c', 'd', 'e', 'f'],
+    to_do: ['a', 'b', 'c'],
     doing: ['Hello', 'Hi'],
     done: ['Good', 'Job'],
   },
