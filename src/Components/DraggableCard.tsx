@@ -1,20 +1,22 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import { Todo } from '../atoms';
 
 type DraggableCardProps = {
-  toDo: string;
+  toDoId: number;
+  toDoText: string;
   index: number;
 };
 
 // React memo, props 가 변경되지 않으면 렌더링을 다시 하지 마라
 
-function DraggableCard({ toDo, index }: DraggableCardProps) {
+function DraggableCard({ toDoId, toDoText, index }: DraggableCardProps) {
   return (
-    <Draggable draggableId={toDo} index={index}>
+    <Draggable draggableId={toDoId + ''} index={index}>
       {(provided, snapshot) => (
         <Card isDragging={snapshot.isDragging} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-          {toDo}
+          {toDoText}
         </Card>
       )}
     </Draggable>
