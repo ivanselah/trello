@@ -12,13 +12,18 @@ function Board({ toDos, boardId }: BoardProps) {
     <Wrapper>
       <Title>{boardId}</Title>
       <Droppable droppableId={boardId}>
-        {(provided) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
+        {(provided, snapshot) => (
+          <Area
+            isDaggingOver={snapshot.isDraggingOver}
+            draggingFromThisWith={Boolean(snapshot.draggingFromThisWith)}
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
             {toDos.map((toDo, index) => (
               <DraggableCard key={toDo} toDo={toDo} index={index} />
             ))}
             {provided.placeholder}
-          </div>
+          </Area>
         )}
       </Droppable>
     </Wrapper>
@@ -32,7 +37,9 @@ const Wrapper = styled.div`
   padding-top: 30px;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
-  min-height: 200px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.h2`
@@ -40,4 +47,15 @@ const Title = styled.h2`
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 18px;
+`;
+
+type AreaProps = {
+  isDaggingOver: boolean;
+  draggingFromThisWith: boolean;
+};
+
+const Area = styled.div<AreaProps>`
+  background-color: ${(props) => (props.isDaggingOver ? 'tomato' : props.draggingFromThisWith ? 'red' : 'pink')};
+  flex-grow: 1;
+  transition: background-color 0.3s ease-in-out;
 `;

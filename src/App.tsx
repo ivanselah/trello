@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
@@ -51,6 +51,11 @@ function App() {
       });
     }
   };
+
+  useEffect(() => {
+    console.log(toDos);
+  }, [toDos]);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Wrapper>
